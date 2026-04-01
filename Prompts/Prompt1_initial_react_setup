@@ -1,0 +1,33 @@
+# Prompt
+
+Please generate the exact shell commands to create a new React +
+
+TypeScript app using Vite called CampusSocialEventsApp.
+
+I want npm as the package manager.
+
+Then include the commands to install dependencies and run the dev server.
+
+# Response 
+
+Optimizing tool selection...
+
+Here are the exact shell commands to create a new React + TypeScript app using Vite, with npm as the package manager, named CampusSocialEventsApp. These commands will also install dependencies and start the development server:
+
+#Create the app with Vite (React + TypeScript template)
+npm create vite@latest CampusSocialEventsApp -- --template react-ts
+
+#Change directory to the new app
+cd CampusSocialEventsApp
+
+#Install dependencies
+npm install
+
+#Start the development server
+npm run dev
+
+Run these commands in your terminal to set up and launch your new app.
+
+# Thoughts
+
+This prompt did what we wanted it to. It initialized our project structure and installed dependices for react/vite/typescript
