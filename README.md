@@ -1,43 +1,37 @@
-# React + TypeScript + Vite
+# CampusSocialEventsApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+CampusSocialEventsApp is a React + Vite web application for college students to browse upcoming campus events, RSVP, and receive notifications. Organization admins can create and edit events. The app uses hardcoded mock data for events and includes authentication and event management features.
 
-Currently, two official plugins are available:
+## Tech Stack
+- **React** (with TypeScript)
+- **Vite** (build tool)
+- **React Router** (routing)
+- **Hardcoded mock data** (for events)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to Install and Run
+1. Clone the repository or download the project files.
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+4. Open the app in your browser at the URL provided in the terminal (usually http://localhost:5173).
 
-## React Compiler
+## Folder Structure Overview
+```
+src/
+  components/      # Shared UI components (Navbar, EventCard)
+  pages/           # Page components (Home, EventDetail, OrgDashboard, Login)
+  context/         # React Context for Auth and Events
+  data/            # Mock data for events
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
+## Team Members
+- [Add your team members here]
     },
   },
 ])
