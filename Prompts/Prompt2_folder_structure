@@ -1,0 +1,15 @@
+# prompt 
+
+We are building a college events Vite app where students can browse upcoming events, RSVP, and receive notifications. Org admins can create and edit events. Include sections for: project overview, tech stack (React + Vite, React Router, hardcoded mock data), how to install and run, folder structure overview, and team members
+
+Set up a folder structure under src/ with: components/ (shared UI like Navbar, EventCard), pages/ (Home, EventDetail, OrgDashboard, Login), context/ (AuthContext, EventContext), data/ (mockData.js). Create placeholder files with basic component scaffolding in each.
+
+# response
+
+The folder structure and placeholder files have been set up under src/ as requested:
+
+components/ (Navbar.tsx, EventCard.tsx)
+pages/ (Home.tsx, EventDetail.tsx, OrgDashboard.tsx, Login.tsx)
+context/ (AuthContext.tsx, EventContext.tsx)
+data/ (mockData.js)
+The README now includes a project overview, tech stack, install/run instructions, folder structure, and a section for team members. You can now start building out your college events app! If you need routing, UI, or logic implemented next, just let me know.

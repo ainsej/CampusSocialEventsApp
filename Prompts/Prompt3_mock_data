@@ -1,0 +1,12 @@
+# prompt
+
+Create a file called src/data/mockData.js that exports: (1) an array of at least 8 event objects with fields like id, title, description, date, time, location, category, organizerId, and an attendees array of user IDs. (2) An array of users with fields id, name, email, role ('student' or 'orgAdmin'), and an rsvps array of event IDs. Include at least 6 students and 2 org admins. Make the events feel like real college events — club meetings, guest lectures, intramural sports, etc.
+
+# response
+
+The src/data/mockData.js file now exports:
+
+An events array with 8 realistic college events (club meetings, lectures, sports, etc.), each with id, title, description, date, time, location, category, organizerId, and attendees (user IDs).
+A users array with 6 students and 2 org admins, each with id, name, email, role, and rsvps (event IDs).
+You can now import and use this mock data throughout your app for development and testing. If you need TypeScript types or want to connect this data to your context/providers, let me know!
+
