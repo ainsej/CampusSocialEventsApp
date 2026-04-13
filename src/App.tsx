@@ -1,11 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-// removed Vite default styles
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import EventList from './components/EventList';
+import EventDetail from './pages/EventDetail';
+import Login from './pages/Login';
+import OrgDashboard from './pages/OrgDashboard';
 
-function App() {
-  return <div>Campus Social Events App</div>;
-}
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Navbar />
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: 24 }}>
+        <Routes>
+          <Route path="/" element={<EventList />} />
+          <Route path="/events/:id" element={<EventDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<OrgDashboard />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
-export default App
+export default App;
