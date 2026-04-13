@@ -1,0 +1,12 @@
+# prompt
+
+Remove all default Vite boilerplate from the app. In App.tsx, delete everything — the Vite logo import, the React logo, the counter useState, and all the JSX inside the return. Replace it with a single div that renders the text 'Campus Social Events App'. In main.tsx, remove any import of index.css or App.css if they contain default Vite styles. Delete the default Vite assets (vite.svg, react.svg) if they exist. The browser should now show only the text 'Campus Social Events App' on a blank page
+
+# response 
+
+All default Vite boilerplate has been removed:
+
+App.tsx now only renders "Campus Social Events App".
+All imports of index.css and App.css have been removed from main.tsx and App.tsx.
+Default Vite assets (vite.svg, react.svg) have been deleted if they existed.
+Your browser will now show only the text "Campus Social Events App" on a blank page. If you need to restore your app layout or add features back, let me know!
