@@ -1,0 +1,13 @@
+# Prompt
+
+Create an AuthContext that tracks the currently logged-in user. Build a Login page where users enter their email to log in — match the email against the users array in mockData. When logged in, store the user in context. No password validation needed for now. Wrap the app in the AuthProvider in main.tsx and make sure the /login route in App.tsx renders the Login page.
+
+# Response
+
+The authentication context is now set up:
+
+An AuthContext tracks the currently logged-in user and provides login/logout methods.
+The Login page allows users to enter their email, matches it against the users in mockData, and stores the user in context if found.
+The app is wrapped in AuthProvider in main.tsx.
+The /login route in App.tsx renders the Login page.
+All related errors are resolved. Your login flow is ready!

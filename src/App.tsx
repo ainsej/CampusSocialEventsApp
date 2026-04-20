@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import EventList from './components/EventList';
+
 import EventDetail from './pages/EventDetail';
 import Login from './pages/Login';
 import OrgDashboard from './pages/OrgDashboard';
