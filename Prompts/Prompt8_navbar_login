@@ -1,0 +1,7 @@
+# Prompt 8
+
+The Navbar should react to login state using AuthContext. Show the user's name and a Logout button when logged in. Show a Login link when logged out. Only show the Dashboard link if the user is an orgAdmin.
+
+# Response
+
+All errors in Navbar.tsx are now resolved. The Navbar can now correctly import users from mockData, and user typing is explicit and type-safe. Your context-driven UI and authentication logic should now work as intended. Let me know if you need further UI or logic improvements!
