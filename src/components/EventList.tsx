@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { events } from '../data/mockData';
+import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useEvent } from '../context/EventContext';
 
 const categoryColors: Record<string, string> = {
   'Club Meeting': '#4F46E5',
@@ -24,11 +25,15 @@ type Event = {
   attendees: string[];
 };
 
-const uniqueCategories: string[] = Array.from(new Set(events.map((e: Event) => e.category)));
-
 const EventList: React.FC = () => {
+  const { events } = useEvent();
   const [category, setCategory] = useState<string>('All');
   const [search, setSearch] = useState<string>('');
+
+  const uniqueCategories: string[] = useMemo(
+    () => Array.from(new Set(events.map((e: Event) => e.category))),
+    [events],
+  );
 
   const filteredEvents = events.filter((event: Event) => {
     const matchesCategory = category === 'All' || event.category === category;
@@ -73,7 +78,12 @@ const EventList: React.FC = () => {
             boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <span style={{ fontWeight: 600, fontSize: 18 }}>{event.title}</span>
+              <Link
+                to={`/events/${event.id}`}
+                style={{ fontWeight: 600, fontSize: 18, color: 'inherit', textDecoration: 'none' }}
+              >
+                {event.title}
+              </Link>
               <span style={{
                 background: categoryColors[event.category] || '#ddd',
                 color: '#fff',

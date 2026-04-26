@@ -1,20 +1,18 @@
-// Mock data for CampusSocialEventsApp
+import type { User } from '../types/User';
 
-/**
- * @typedef {Object} Event
- * @property {string} id
- * @property {string} title
- * @property {string} description
- * @property {string} date
- * @property {string} time
- * @property {string} location
- * @property {string} category
- * @property {string} organizerId
- * @property {string[]} attendees
- */
+export type Event = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  location: string;
+  category: string;
+  organizerId: string;
+  attendees: string[];
+};
 
-/** @type {Event[]} */
-export const events = [
+export const events: Event[] = [
   {
     id: '1',
     title: 'Chess Club Weekly Meeting',
@@ -105,17 +103,7 @@ export const events = [
   }
 ];
 
-/**
- * @typedef {Object} User
- * @property {string} id
- * @property {string} name
- * @property {string} email
- * @property {('student'|'orgAdmin')} role
- * @property {string[]} rsvps
- */
-
-/** @type {User[]} */
-export const users = [
+export const users: User[] = [
   {
     id: 's1',
     name: 'Emily Chen',
