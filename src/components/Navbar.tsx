@@ -1,17 +1,10 @@
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { users } from '../data/mockData.ts';
-import type { User } from '../types/User';
-
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-
-  // Find the full user object if logged in
-  const userObj: User | undefined = user ? users.find((u: User) => u.email === user || u.name === user) : undefined;
 
   const handleLogout = () => {
     logout();
@@ -25,14 +18,14 @@ const Navbar: React.FC = () => {
       </div>
       <div className="navbar-links">
         <Link to="/">Events</Link>
-        {userObj && userObj.role === 'orgAdmin' && (
+        {user && user.role === 'orgAdmin' && (
           <Link to="/dashboard">Dashboard</Link>
         )}
       </div>
       <div className="navbar-auth">
-        {userObj ? (
+        {user ? (
           <>
-            <span className="navbar-user">{userObj.name}</span>
+            <span className="navbar-user">{user.name}</span>
             <button className="navbar-logout" onClick={handleLogout}>Logout</button>
           </>
         ) : (
