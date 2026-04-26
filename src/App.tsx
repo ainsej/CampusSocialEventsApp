@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Navbar />
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: 24 }}>
+      <div className="app-container">
         <Routes>
           <Route path="/" element={<EventList />} />
           <Route path="/events/:id" element={<EventDetail />} />

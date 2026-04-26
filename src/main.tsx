@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-// removed Vite default styles
+import './index.css'
 
 import { AuthProvider } from '../context/AuthContext';
 import { EventProvider } from './context/EventContext';

@@ -42,69 +42,68 @@ const EventList: React.FC = () => {
   });
 
   return (
-    <div>
-      {/* Filter Bar */}
-      <div style={{ display: 'flex', gap: 16, marginBottom: 24, flexWrap: 'wrap', alignItems: 'center' }}>
-        <label>
-          Category:
-          <select value={category} onChange={e => setCategory(e.target.value)} style={{ marginLeft: 8 }}>
-            <option value="All">All</option>
-            {uniqueCategories.map((cat: string) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-        </label>
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          style={{ padding: 6, borderRadius: 4, border: '1px solid #ccc', minWidth: 200 }}
-        />
-      </div>
-
-      {/* Event Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-        gap: 24
-      }}>
-        {filteredEvents.map((event: Event) => (
-          <div key={event.id} style={{
-            border: '1px solid #e5e7eb',
-            borderRadius: 8,
-            padding: 20,
-            background: '#fff',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <Link
-                to={`/events/${event.id}`}
-                style={{ fontWeight: 600, fontSize: 18, color: 'inherit', textDecoration: 'none' }}
-              >
-                {event.title}
-              </Link>
-              <span style={{
-                background: categoryColors[event.category] || '#ddd',
-                color: '#fff',
-                borderRadius: 12,
-                padding: '2px 12px',
-                fontSize: 13,
-                fontWeight: 500
-              }}>{event.category}</span>
-            </div>
-            <div style={{ color: '#6b7280', fontSize: 14, marginBottom: 4 }}>
-              {event.date} {event.time && `@ ${event.time}`}
-            </div>
-            <div style={{ color: '#374151', fontSize: 15, marginBottom: 8 }}>
-              {event.location}
-            </div>
-            <div style={{ color: '#2563eb', fontWeight: 500, fontSize: 14 }}>
-              RSVP Count: {event.attendees.length}
-            </div>
+    <div className="events-layout">
+      <aside className="events-sidebar">
+        <h3>Filters</h3>
+        <div className="filter-group">
+          <div className="filter-field">
+            <label htmlFor="filter-category">Category</label>
+            <select
+              id="filter-category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="All">All</option>
+              {uniqueCategories.map((cat: string) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
           </div>
-        ))}
-      </div>
+
+          <div className="filter-field">
+            <label htmlFor="filter-search">Search</label>
+            <input
+              id="filter-search"
+              type="text"
+              placeholder="Search by title..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        </div>
+      </aside>
+
+      <section>
+        <div className="events-grid">
+          {filteredEvents.map((event: Event) => (
+            <div key={event.id} className="event-card">
+              <div className="event-card-top">
+                <Link to={`/events/${event.id}`} className="event-title-link">
+                  {event.title}
+                </Link>
+                <span
+                  style={{
+                    background: categoryColors[event.category] || '#ddd',
+                    color: '#fff',
+                    borderRadius: 12,
+                    padding: '2px 12px',
+                    fontSize: 13,
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {event.category}
+                </span>
+              </div>
+              <div className="event-meta">{event.date} {event.time && `@ ${event.time}`}</div>
+              <div className="event-location">{event.location}</div>
+              <div className="rsvp-count">RSVP Count: {event.attendees.length}</div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

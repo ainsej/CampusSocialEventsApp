@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar: React.FC = () => {
@@ -17,9 +17,14 @@ const Navbar: React.FC = () => {
         <Link to="/" className="navbar-logo">Campus Events</Link>
       </div>
       <div className="navbar-links">
-        <Link to="/">Events</Link>
+        <NavLink to="/" end className={({ isActive }) => `nav-tab${isActive ? ' active' : ''}`}
+        >
+          Events
+        </NavLink>
         {user && user.role === 'orgAdmin' && (
-          <Link to="/dashboard">Dashboard</Link>
+          <NavLink to="/dashboard" className={({ isActive }) => `nav-tab${isActive ? ' active' : ''}`}>
+            Dashboard
+          </NavLink>
         )}
       </div>
       <div className="navbar-auth">
@@ -29,7 +34,9 @@ const Navbar: React.FC = () => {
             <button className="navbar-logout" onClick={handleLogout}>Logout</button>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <NavLink to="/login" className={({ isActive }) => `nav-tab${isActive ? ' active' : ''}`}>
+            Login
+          </NavLink>
         )}
       </div>
     </nav>
