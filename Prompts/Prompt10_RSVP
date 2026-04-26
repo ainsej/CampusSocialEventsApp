@@ -1,0 +1,47 @@
+# Prompt 
+
+Now we would like to add in an RSVP feature where users can click an event and have it noted as RSVP’d to. We would also like notifications for the date and time of the event to be sent to users. Add an RSVP button to the EventDetail page. When a student clicks it, add the event to their rsvpList in AuthContext. Show the updated RSVP count on the card and detail page. Add a notification reminding them of the event date and time.
+
+
+# Response
+
+I’ll implement RSVP end-to-end by introducing a shared EventContext (so RSVP counts update everywhere), adding rsvpToEvent to AuthContext, wiring EventList cards to the detail route, building out EventDetail with the RSVP button + reminder scheduling, and updating OrgDashboard to use shared events state.
+
+Updated todo list
+
+First I’m going to replace the unused placeholder EventContext with a real provider backed by mockData so RSVP counts and edits are consistent across list/detail/dashboard.
+
+Deleted EventContext.tsx
+
+Next I’ll extend AuthContext with an rsvpToEvent(eventId) function that appends the event to the logged-in student’s rsvps list (deduped), since that’s where you want RSVP state recorded.
+
+Edited
+AuthContext.tsx+11-1
+Now I’ll update EventList to read events from EventContext (instead of static mock data) and make each event clickable to open the detail page where the RSVP button lives.
+
+Edited
+EventList.tsx+15-5
+Next I’ll implement EventDetail with an RSVP button that (1) adds the event to the student’s rsvps in AuthContext, (2) adds the student to the event’s attendees in EventContext so counts update everywhere, and (3) schedules a browser notification reminder for the event’s date/time.
+
+Next I’ll update OrgDashboard to use EventContext (instead of its own local copy of events) so edits also flow through to the main list and detail pages.
+
+Edited
+OrgDashboard.tsx+8-13
+Now I’ll finish by running a production build to ensure everything typechecks and the RSVP feature compiles cleanly.
+
+Completed: Update EventList + EventDetail (3/5)
+
+RSVP feature is now implemented end-to-end
+
+Shared event state: Added a real event store in src/context/EventContext.tsx (backed by mockData) so RSVP counts update across the app.
+Auth RSVP list: Extended context/AuthContext.tsx with rsvpToEvent(eventId) to append the event to the logged-in student’s rsvps list (deduped).
+Event detail + RSVP button: Built out src/pages/EventDetail.tsx with:
+RSVP button (students only; redirects to /login if not logged in)
+Updates both the student’s rsvps and the event’s attendees (so RSVP count changes immediately)
+Schedules a browser notification reminder for 1 hour before the event start time (or sends immediately if the event is soon)
+Event cards show updated RSVP counts: src/components/EventList.tsx now reads from EventContext and links each event title to /events/:id, so users can click into the detail page to RSVP.
+Dashboard edits stay in sync: src/pages/OrgDashboard.tsx now uses EventContext too, so edits also reflect in the list/detail views.
+Notes about notifications
+
+The reminder uses the browser Notification API. It will prompt for permission on first RSVP, and reminders only work while the page remains open (no backend/service worker here).
+Build passes (npm run build). If you want “un-RSVP” behavior or persistence across refresh, tell me and I’ll extend the same flow.
