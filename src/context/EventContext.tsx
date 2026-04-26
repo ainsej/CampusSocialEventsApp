@@ -1,33 +1,46 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
+import { events as mockEvents, type Event } from '../data/mockData';
 
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-}
+type UpdateEventInput = Pick<Event, 'id'> & Partial<Pick<Event, 'title' | 'date' | 'time' | 'location' | 'category' | 'description'>>;
 
 interface EventContextType {
   events: Event[];
-  addEvent: (event: Event) => void;
+  getEventById: (id: string) => Event | undefined;
+  updateEvent: (input: UpdateEventInput) => void;
+  addAttendee: (eventId: string, userId: string) => void;
 }
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
 
-export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [events, setEvents] = useState<Event[]>([]);
+export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [events, setEvents] = useState<Event[]>(() => mockEvents);
 
-  const addEvent = (event: Event) => setEvents((prev) => [...prev, event]);
+  const getEventById = (id: string) => events.find((e) => e.id === id);
 
-  return (
-    <EventContext.Provider value={{ events, addEvent }}>
-      {children}
-    </EventContext.Provider>
+  const updateEvent = (input: UpdateEventInput) => {
+    setEvents((prev) => prev.map((e) => (e.id === input.id ? { ...e, ...input } : e)));
+  };
+
+  const addAttendee = (eventId: string, userId: string) => {
+    setEvents((prev) =>
+      prev.map((e) => {
+        if (e.id !== eventId) return e;
+        if (e.attendees.includes(userId)) return e;
+        return { ...e, attendees: [...e.attendees, userId] };
+      }),
+    );
+  };
+
+  const value = useMemo<EventContextType>(
+    () => ({ events, getEventById, updateEvent, addAttendee }),
+    [events],
   );
+
+  return <EventContext.Provider value={value}>{children}</EventContext.Provider>;
 };
 
 export const useEvent = () => {
   const context = useContext(EventContext);
-  if (!context) throw new Error('useEvent must be used within EventProvider');
+  if (!context) throw new Error('useEvent must be used within an EventProvider');
   return context;
 };

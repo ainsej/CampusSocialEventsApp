@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { events as mockEvents, type Event } from '../data/mockData';
+import { useEvent } from '../context/EventContext';
+import type { Event } from '../data/mockData';
 
 type EditFormState = {
   title: string;
@@ -11,8 +12,8 @@ type EditFormState = {
 const OrgDashboard: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { events, updateEvent } = useEvent();
 
-  const [events, setEvents] = useState<Event[]>(() => mockEvents);
   const [editingEventId, setEditingEventId] = useState<string | null>(null);
   const [form, setForm] = useState<EditFormState>({ title: '', date: '' });
 
@@ -40,17 +41,11 @@ const OrgDashboard: React.FC = () => {
     e.preventDefault();
     if (!editingEventId) return;
 
-    setEvents((prev) =>
-      prev.map((event) =>
-        event.id === editingEventId
-          ? {
-              ...event,
-              title: form.title,
-              date: form.date,
-            }
-          : event,
-      ),
-    );
+    updateEvent({
+      id: editingEventId,
+      title: form.title,
+      date: form.date,
+    });
 
     setEditingEventId(null);
   };
