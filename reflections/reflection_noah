@@ -1,0 +1,14 @@
+# AI-Driven Development: Final Reflection
+# Noah Berry  •  Campus Social Events App
+
+# How I Wrote Prompts
+I wrote prompts using my own judgment and reasoning. While this caused some issues early on, it largely worked well. The most important lesson I learned about prompt writing was to be specific rather than vague. For example, telling the AI to create a file and specifying exactly what to name it is far more effective than simply asking it to implement a new feature and hoping it organizes things correctly. I also learned that the order of prompts matters enormously; later prompts build on what has already been established, so careful sequencing is critical for smooth development.
+
+# How I Validated AI Output
+I validated AI output primarily by reviewing which files were being modified and confirming that those were the correct files for the given task. I then read through the changed lines carefully to understand what had been altered. The most effective validation method I found was running the app using the npm run dev command to visually inspect how the application looked and behaved after each change. This caught most issues quickly and made it easy to compare expected versus actual results.
+
+# What I Learned About Spec-Driven Development
+This assignment demonstrated that spec-driven development is a powerful and efficient way to build software but only when prompts are planned deliberately and executed in the right order. Breaking development into incremental steps made it easy to revert to a previous GitHub commit if a prompt broke something, which was a huge advantage. One mistake our team made was attempting to improve the UI too early in the process. Once we recognized that functionality should come before aesthetics, the workflow improved significantly. Getting the app working correctly first and then refining the look made both tasks cleaner and less error prone.
+
+# What I Would Change Next Time
+Next time I would invest more time upfront in planning out all the features and the sequence of prompts before writing a single line of AI-generated code. Our team rushed into building, which led to early hiccups in how prompts flowed together. I would also change the AI model we used. We relied on GPT-4.1, which produced a frustrating number of errors—particularly in import statements rather than in the features themselves. Over time we learned to write tighter prompts that reduced these errors, but switching to a more capable, up-to-date model from the start would have saved significant time. All in all, this was a genuinely fun experience. My understanding of effective prompting, GitHub version control, and collaborative development through Microsoft Teams all improved.
