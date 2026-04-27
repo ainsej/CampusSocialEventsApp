@@ -1,0 +1,51 @@
+# Prompt 
+
+Whenever the admin is logged in and goes to the dashboard. I see the events created and I can edit them but there no way to create a new event. Could you implement thisa way to create a new event from the admin dashboard page?
+
+# Response
+
+Makes sense. I’ll (1) add an addEvent method to the shared EventContext, then (2) update the OrgDashboard to include a “Create New Event” form that creates an event owned by the logged-in orgAdmin and immediately shows it in the dashboard list.
+
+Now I’ll update OrgDashboard to include a simple “Create New Event” form that’s only visible to orgAdmins and uses addEvent to insert the new event with organizerId = user.id.
+
+Now I’ll run a build to confirm the new create-event form and updated context types compile cleanly.
+
+Implemented “create new event” on the organizer dashboard.
+
+What changed
+
+Added addEvent(event) to the shared event store in src/context/EventContext.tsx.
+Updated the dashboard to include a Create New Event form (Title, Date, Time, Location, Category, Description) in src/pages/OrgDashboard.tsx.
+Submitting the form creates an event with:
+organizerId = logged-in admin’s id
+attendees = [] (so RSVP count starts at 0)
+a generated id (crypto.randomUUID() when available, otherwise timestamp)
+How to test
+
+Log in as an org admin (olivia.brown@college.edu or ethan.smith@college.edu)
+Go to /dashboard
+Fill out “Create New Event” → click Create Event
+The new event should appear immediately in the dashboard list.
+
+# Reprompt
+
+Looks good but the create menu is always shown. Can you make a button in the admin dashboard that toggles the create event menu?
+
+# Response 
+
+Yep — I’ll update the organizer dashboard so the “Create New Event” form is hidden by default and only appears when you click a “Create Event” button (click again to close).
+
+Edited
+OrgDashboard.tsx+85-74
+I’ll do a quick build to ensure the new toggle state compiles cleanly.
+
+npm run build
+Build failed only because the terminal is in the parent folder (no package.json there). I’ll rerun the build from CampusSocialEventsApp.
+
+Added a toggle button so the Create Event area isn’t always visible.
+
+Updated src/pages/OrgDashboard.tsx with a showCreate state
+Dashboard now shows a Create Event button
+Click once → opens the “Create New Event” form
+Click again → closes it
+After submitting a new event, the form auto-closes

@@ -6,6 +6,7 @@ type UpdateEventInput = Pick<Event, 'id'> & Partial<Pick<Event, 'title' | 'date'
 interface EventContextType {
   events: Event[];
   getEventById: (id: string) => Event | undefined;
+  addEvent: (event: Event) => void;
   updateEvent: (input: UpdateEventInput) => void;
   addAttendee: (eventId: string, userId: string) => void;
 }
@@ -16,6 +17,10 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [events, setEvents] = useState<Event[]>(() => mockEvents);
 
   const getEventById = (id: string) => events.find((e) => e.id === id);
+
+  const addEvent = (event: Event) => {
+    setEvents((prev) => [event, ...prev]);
+  };
 
   const updateEvent = (input: UpdateEventInput) => {
     setEvents((prev) => prev.map((e) => (e.id === input.id ? { ...e, ...input } : e)));
@@ -32,7 +37,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const value = useMemo<EventContextType>(
-    () => ({ events, getEventById, updateEvent, addAttendee }),
+    () => ({ events, getEventById, addEvent, updateEvent, addAttendee }),
     [events],
   );
 
