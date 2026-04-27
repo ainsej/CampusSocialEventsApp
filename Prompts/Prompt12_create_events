@@ -49,3 +49,16 @@ Dashboard now shows a Create Event button
 Click once → opens the “Create New Event” form
 Click again → closes it
 After submitting a new event, the form auto-closes
+
+# Reprompt
+
+Whenever Im editing an event i can olny change the title and date. Can you make it to where I can edit the location, time, category and description as well.
+
+# Response
+
+Updated the admin edit form so you can edit all event fields (not just title/date).
+
+Expanded the edit state + prefill in OrgDashboard
+Edit form now includes: title, date, time, location, category, description
+Saving calls updateEvent(...) with all of those fields, so updates propagate to the event list and detail pages too
+Build is passing.

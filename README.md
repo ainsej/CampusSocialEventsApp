@@ -122,6 +122,11 @@ Roles:
 - Prompt Builder: **Noah**
 - Tester: **Ainslee**
 
+### Week 4
+- Prompter: **Noah**
+- Prompt Builder: **Ainslee**
+- Tester: **Kennedy**
+
 ## Notes / Limitations
 - No backend/database: all data is in mock files and React state.
 - Notifications use the browser Notification API:
